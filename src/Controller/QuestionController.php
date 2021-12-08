@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-// use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class QuestionController
+class QuestionController extends AbstractController
 {
     /**
      * @Route("/")
@@ -23,9 +23,14 @@ class QuestionController
 
     public function show($slug)
     {
-        return new Response(sprintf(
-            'Future page to show the "%s"!',
-            ucwords(str_replace('-', ' ', $slug))
-        ));
+        $answers = [
+            'Example answer 1',
+            'Example answer 2',
+            'Example answer 3'
+        ];
+
+        return $this->render('questions/show.html.twig', [
+            'question' => ucwords(str_replace('-', ' ', $slug)), 'answers' => $answers
+        ]);
     }
 }
