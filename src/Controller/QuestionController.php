@@ -14,7 +14,7 @@ class QuestionController extends AbstractController
 
     public function homepage()
     {
-        return new Response('What a bewitching controller we have conjured!');
+        return $this->render('questions/homepage.html.twig');
     }
 
     /**
@@ -29,8 +29,12 @@ class QuestionController extends AbstractController
             'Example answer 3'
         ];
 
+        $names = ['John', 'Becky', 'Gavin', 'Jeremy', 'Samantha', 'Margot', 'Olive'];
+
+        dump($slug);
+
         return $this->render('questions/show.html.twig', [
-            'question' => ucwords(str_replace('-', ' ', $slug)), 'answers' => $answers
+            'question' => ucwords(str_replace('-', ' ', $slug)), 'answers' => $answers, 'username' => $names[random_int(0, 6)]
         ]);
     }
 }
